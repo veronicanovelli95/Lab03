@@ -1,17 +1,16 @@
 package it.polito.tdp.spellcheck.model;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.io.*;
+import java.util.*;
 
 public class Dictionary {
 	
-	private List<String> dizionario= new LinkedList<String>();
+	private List<String> dizionario;
 	
-
+	public Dictionary() {
+		dizionario=new ArrayList<String>();
+	}
+	
 	public List<RichWord> spellCheckText(List<String> inputTextList){
 		System.out.println("spell" + inputTextList.toString());
 		List<RichWord> corr = new ArrayList<RichWord>();
@@ -44,22 +43,25 @@ public class Dictionary {
 	
 	
 	public void loadDictionary(String language){
+		dizionario.clear();	
+		try {
+			FileReader fr = new FileReader("rsc/"+language+".txt");
+			BufferedReader br = new BufferedReader(fr);
+			String word;
 			
-			try {
-			      FileReader fr = new FileReader("rsc/"+language+".txt");
-			      BufferedReader br = new BufferedReader(fr);
-			      String word;
 			while ((word = br.readLine()) != null) {
-				if(!dizionario.contains(word))
+//				if(!dizionario.contains(word))
 			     dizionario.add(word);
 			} 
-			br.close();
-			} catch (IOException e){
-			System.out.println("Errore nella lettura del file");
-			}
 			
-			}
+			br.close();
+			} 
+		catch (IOException e){
+			System.out.println("Errore nella lettura del file");
+		}
+			
 	}
+}
 
 
 

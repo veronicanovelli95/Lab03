@@ -1,10 +1,11 @@
 package it.polito.tdp.spellchecker.controller;
 
-import java.awt.List;
+
 import java.net.URL;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import it.polito.tdp.spellcheck.model.Dictionary;
@@ -19,7 +20,7 @@ import javafx.scene.control.TextArea;
 public class SpellCheckerController {
  
 	private Dictionary di = new Dictionary();
-	
+//	private Dictionary2 di = new Dictionary();
     @FXML
     private ResourceBundle resources;
 
@@ -52,46 +53,45 @@ public class SpellCheckerController {
     void doClearText(ActionEvent event) {
     	txtTesto.clear();
         txtResult.clear();
+        lblTempi.setText("");
+        lblErrori.setText("");
     }
     
     @FXML
     void doSeleziona(ActionEvent event) {
+    	long t=System.nanoTime();
     	di.loadDictionary(cbxLingua.getValue()); 
-
+    	long t2=System.nanoTime();
     }
 
     @FXML
     void doSpellCheck(ActionEvent event) {
     	
-//    	if(cbxLingua.getValue().equals("English"))
-//        	di.loadDictionary("English");
-//        else if(cbxLingua.getValue().equals("Italian"))
-//        	di.loadDictionary("Italian"); 
-    	
-    	
    
-    	String testo =txtTesto.getText().toLowerCase();
-    	
+    	String testo =txtTesto.getText().toLowerCase().replaceAll("[\\p{Punct}]", "");
+    	testo.replaceAll("[ \\p{Punct}]", "");
     	
         String trad[]= testo.split(" ");
         
         for(int i=0;i<trad.length;i++)
         	System.out.println(trad[i]+"\n");
         
-        LinkedList<String> controllare = new LinkedList<String>();
+       List<String> controllare = new LinkedList<String>();
         
-        
-        
+   
         for(int i =0; i<trad.length;i++){
         	controllare.add(trad[i]);
         }
         
         
-        
-       txtResult.setText(di.spellCheckText(controllare).toString());
-        
-        
-
+        long t=System.nanoTime();
+        List<RichWord> tr = new LinkedList<RichWord>(di.spellCheckText(controllare));
+        for(RichWord r: tr)
+        txtResult.appendText(r.getInput()+"\n");
+        long t1=System.nanoTime();
+       
+       lblErrori.setText("Il testo contiene "+ tr.size()+" errore/i.");
+   	  lblTempi.setText("Tempo necessario per la traduzione "+(t1-t)+ " nanosecondi.");
     }
 
     @FXML
