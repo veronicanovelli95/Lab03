@@ -16,7 +16,7 @@ public class Dictionary2 {
 		List<RichWord> corr = new ArrayList<RichWord>();
 		boolean b=false;
 		
-		
+		dividiDizionario(dizionario);
 		for(String s: inputTextList){
 			b = controllaDecotonica(s);
 			if(b==false){
@@ -30,7 +30,7 @@ public class Dictionary2 {
 	private List<String> dizionario1=new ArrayList<String>();
 	private List<String> dizionario2=new ArrayList<String>();
 	
-	private void dividiDizionario(Dictionary d){
+	private void dividiDizionario(List<String> dizionario3){
 		int meta= dizionario.size()/2;
 		for(int i=0;i<meta;i++)
 			dizionario1.add(dizionario.get(i));
@@ -44,7 +44,7 @@ public class Dictionary2 {
 		if(dizionario1.contains(s))
 				trovato=true;}
 		else
-			if(dizionario1.contains(s))
+			if(dizionario2.contains(s))
 				trovato=true;
 	   return trovato;
 		

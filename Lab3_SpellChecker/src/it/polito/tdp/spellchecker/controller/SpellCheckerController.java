@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import it.polito.tdp.spellcheck.model.Dictionary;
+import it.polito.tdp.spellcheck.model.Dictionary2;
 import it.polito.tdp.spellcheck.model.RichWord;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,9 +19,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
 public class SpellCheckerController {
- 
+	
 	private Dictionary di = new Dictionary();
-//	private Dictionary2 di = new Dictionary();
+//	private Dictionary2 di = new Dictionary2();
     @FXML
     private ResourceBundle resources;
 
