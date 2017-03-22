@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Dizionario {
+public class DizionarioItaliano extends Dictionary {
 	private List<String> italiano=new ArrayList<String>();
 
 	
@@ -29,25 +29,5 @@ public class Dizionario {
 	
 	
 	
-	public List<RichWord> spellCheckText(List<String> inputTextList){
-		List<RichWord> corr = new ArrayList<RichWord>();
-		boolean b=false;
-		for(String s: inputTextList){
-			b = controlla(s);
-			RichWord r= new RichWord(s,b);
-			corr.add(r);
-			}
-		return corr;
-	}
-
-
-
-	private boolean controlla(String s) {
-		boolean trovato=false;
-		for(String k: italiano){
-			if(s.compareTo(k)==0)
-				trovato=true;
-		}
-		return trovato;
-	}
+	
 }

@@ -9,30 +9,32 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.tdp.spellchecker.controller.SpellCheckerController">
+<BorderPane xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.tdp.spellchecker.controller.SpellCheckerController">
    <top>
-      <VBox prefHeight="332.0" prefWidth="240.0" BorderPane.alignment="CENTER">
+      <VBox BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="241.0" text="Lab3_SpellChecker">
+            <Label alignment="CENTER" contentDisplay="CENTER" text="Lab3_SpellChecker">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox prefHeight="25.0" prefWidth="267.0">
                <children>
                   <Label text="Choose the language:" />
-                  <ComboBox prefWidth="150.0" promptText="Lenguage" />
+                  <ComboBox fx:id="cbxLingua" onAction="#doSeleziona" prefWidth="150.0" promptText="Lenguage" />
                </children>
             </HBox>
             <TextArea fx:id="txtTesto" />
             <Button fx:id="bntSpellCheck" mnemonicParsing="false" onAction="#doSpellCheck" text="Spell Check" />
             <Label text="Wrong words" />
             <TextArea fx:id="txtResult" editable="false" prefHeight="200.0" prefWidth="200.0" />
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="btnClearText" mnemonicParsing="false" onAction="#doClearText" text="Clear Text" />
+                  <Label fx:id="lblErrori" text=".." />
+                  <Button fx:id="btnClearText" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#doClearText" text="Clear Text" />
                </children>
             </HBox>
+            <Label fx:id="lblTempi" text="Label" />
          </children>
       </VBox>
    </top>
